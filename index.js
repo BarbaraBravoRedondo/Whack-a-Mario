@@ -35,14 +35,17 @@ function startGame() {
     timeUp = false;
     score = 0;
     peep();
-    setTimeout(() => timeUp = true, 15000)
+    setTimeout(() => timeUp = true, 25000)
 }
 
 function whackIt(e) {
-    if (!e.isTrusted) return; 
+     if (!e.isTrusted) return; 
+    if (e.type !== 'click') return; 
     score++;
     this.parentNode.classList.remove('up');
     scoreBoard.textContent = score;
 }
 
-mario.forEach(mole => mole.addEventListener('click', whackIt));
+mario.forEach(mole => 
+    mole.addEventListener('click', whackIt));
+    mole.addEventListener('touchstart', whackIt);
